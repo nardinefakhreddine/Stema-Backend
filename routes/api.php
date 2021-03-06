@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 Route::post('/login','AdminController@login');
+Route::post('/user/login','UserController@login');
