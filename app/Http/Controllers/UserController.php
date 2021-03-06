@@ -11,7 +11,12 @@ class UserController extends Controller
 {
     public function getAll(){
         $users=User::all();
-        return response()->json($users);
+        if ($users) {
+            return response()->json($users);
+        }
+        return response()->json([
+            "message" => "Couldn't get users list"
+        ], 400);
     }
     
     public function login(Request $request){
