@@ -3,19 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Admin;
-class AdminController extends Controller
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use App\User;
+class UserController extends Controller
 {
     public function getAll(){
-        $users=Admin::all();
+        $users=User::all();
         return response()->json($users);
     }
-
+    
     public function login(Request $request){
 
         $credentials = request(['username', 'password']);
 
-        if (!$token = auth('admins')->attempt($credentials)) {
+        if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -36,10 +39,10 @@ class AdminController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type'   => 'bearer',
-            'expires_in'   => auth('admins')->factory()->getTTL() * 60,
-            'admin'=>auth('admins')->user(),
-            'adminID'=>auth('admins')->user()->id,
-            'role'=>'admin'
+            'expires_in'   => auth('api')->factory()->getTTL() * 60,
+            'user'=>auth('api')->user(),
+            'userID'=>auth('api')->user()->id,
+            'role'=>'user'
         ]);
     }
 

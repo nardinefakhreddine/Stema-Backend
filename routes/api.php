@@ -19,3 +19,14 @@ use Illuminate\Support\Facades\Route;
 });*/
 Route::post('/login','AdminController@login');
 Route::post('/user/login','UserController@login');
+Route::group(['prefix' => 'admin','middleware' => ['assign.guard:admins','jwt.auth']],function ()
+{
+	Route::get('/getAll','AdminController@getAll');	
+});
+
+
+
+Route::group(['prefix' => 'user','middleware' => ['assign.guard:api','jwt.auth']],function ()
+{
+	Route::get('/getAll','UserController@getAll');	
+});
