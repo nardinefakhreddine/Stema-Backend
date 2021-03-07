@@ -58,14 +58,12 @@ class UserController extends Controller
 
  /**Start CRUD**/
  public function create(Request $request){
-    //request body
     $user=User::create([
      'name'=>$request->name,
      'phone'=>$request->phone,
      'username'=>$request->username,
      'email'=>$request->email,
      'password'=>$request->password,
-
      
  ]);
  return response()->json($user);
@@ -81,7 +79,6 @@ public function edit($id){
   }
 }
 public function update(Request $request , $id){
-   //request Params
    $user=User::find($id)->update([
       'name'=>$request->name,
      'username'=>$request->username,
@@ -109,15 +106,9 @@ public function delete($id){
       return response()->json(["message"=>"Successfully Delete  User"],200);
   }
 }
-
-
 /**END CRUD**/
 
-
-
-
-
-
+/*some used funtions */
  protected function respondWithToken($token)
     {
         return response()->json([

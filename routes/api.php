@@ -19,12 +19,10 @@ use Illuminate\Support\Facades\Route;
 });*/
 Route::prefix('admin')->group(function () {
     Route::post('login','AdminController@login');
-    Route::post('logout', 'AdminController@logout');
    
 });
 Route::prefix('user')->group(function () {
     Route::post('login','UserController@login');
-    Route::post('logout', 'UserController@logout');
    
 });
 
@@ -36,6 +34,7 @@ Route::group(['prefix' => 'admin','middleware' => ['assign.guard:admins']],funct
         Route::get('edit/{id}','AdminController@edit');
         Route::put('update/{id}','AdminController@update');
         Route::delete('delete/{id}','AdminController@delete');
+        Route::post('logout', 'AdminController@logout');
 });
 
 
@@ -48,4 +47,6 @@ Route::group(['prefix' => 'user','middleware' => ['assign.guard:jwtusers']],func
         Route::get('edit/{id}','UserController@edit');
         Route::put('update/{id}','UserController@update');
         Route::delete('delete/{id}','UserController@delete');	
+        Route::post('logout', 'UserController@logout');
+         Route::post('logout', 'AdminController@logout');
 });
