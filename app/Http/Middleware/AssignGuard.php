@@ -16,14 +16,13 @@ class AssignGuard extends BaseMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next,$guard=null)
+    public function handle($request, Closure $next,$guard)
     {
         
         
-        if ($guard == "superadmin" && Auth::guard($guard)->check()) {
-        } else if ($guard == "schooladmin" && Auth::guard($guard)->check()) {
-        } else if ($guard == "teacher" && Auth::guard($guard)->check()) {
-        } else if ($guard == "student" && Auth::guard($guard)->check()) {
+        if ($guard == "admins" && Auth::guard($guard)->check()) {
+        } else if ($guard == "api" && Auth::guard($guard)->check()) {
+       
         } else {
             try{
           
@@ -43,9 +42,13 @@ class AssignGuard extends BaseMiddleware
                 }
     
             }
+            
         } 
         
-   
+   /*if($guard != null)
+            auth()->shouldUse($guard);
+        return $next($request);
+    } */
   
 
        
