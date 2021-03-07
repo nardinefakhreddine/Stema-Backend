@@ -29,7 +29,7 @@ Route::prefix('user')->group(function () {
 });
 
 
-Route::group(['prefix' => 'admin','middleware' => ['assign.guard:admins','jwt.auth']],function ()
+Route::group(['prefix' => 'admin','middleware' => ['assign.guard:admins']],function ()
 {       Route::get('getAll','AdminController@getAll');	
         Route::get('getById/{id}','AdminController@getById');
         Route::post('create','AdminController@create');
@@ -40,7 +40,7 @@ Route::group(['prefix' => 'admin','middleware' => ['assign.guard:admins','jwt.au
 
 
 
-Route::group(['prefix' => 'user','middleware' => ['assign.guard:api','jwt.auth']],function ()
+Route::group(['prefix' => 'user','middleware' => ['assign.guard:jwtusers']],function ()
 {
         Route::get('/getAll','UserController@getAll');
         Route::get('getById/{id}','UserController@getById');

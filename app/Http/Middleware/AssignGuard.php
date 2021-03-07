@@ -19,42 +19,27 @@ class AssignGuard extends BaseMiddleware
     public function handle($request, Closure $next,$guard)
     {
         
-        
         if ($guard == "admins" && Auth::guard($guard)->check()) {
-        } else if ($guard == "api" && Auth::guard($guard)->check()) {
-       
-        } else {
-            try{
-          
-                $admin=JWTAuth::parseToken()->authenticate();
-                $request->merge(['Admin' => $admin]);
-               
-            }catch(Exception $e){
-                if($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
-                    return response()->json(['status'=>'Token is Invalid']);
-                }
-                else if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
-                    return response()->json(['status'=>'Token is Expired']);
-                }
-    
-                else{
-                    return response()->json(['status'=>'Authorization Token not Found']);
-                }
-    
-            }
-            
+        } else if ($guard == "jwtusers" && Auth::guard($guard)->check()) {
         } 
-        
-   /*if($guard != null)
-            auth()->shouldUse($guard);
+        else {
+            return response()->json(['status' => 'Not authorized']);
+        }
+
+        try {
+            $user = JWTAuth::parseToken()->authenticate();
+        } catch (Exception $e) {
+            if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
+                return response()->json(['status' => 'Invalid token']);
+            } else if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
+                return response()->json(['status' => 'Expired Token']);
+            } else {
+                return response()->json(['status' => 'Token Not Found']);
+            }
+        }
         return $next($request);
-    } */
-  
-
-       
-       return $next($request); 
-        
-
-
+    }
 }
-}
+/*
+
+if($guard != null){ auth()->shouldUse($guard);

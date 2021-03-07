@@ -16,7 +16,7 @@ class UserController extends Controller
 
         $credentials = request(['username', 'password']);
 
-        if (!$token = auth('api')->attempt($credentials)) {
+        if (!$token = auth('jwtusers')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -25,7 +25,7 @@ class UserController extends Controller
 
     public function logout()
     {
-        auth('api')->logout();
+        auth('jwtusers')->logout();
         return response()->json(['message' => 'Successfully logged out']);
     }
     
@@ -123,9 +123,9 @@ public function delete($id){
         return response()->json([
             'access_token' => $token,
             'token_type'   => 'bearer',
-            'expires_in'   => auth('api')->factory()->getTTL() * 60,
-            'user'=>auth('api')->user(),
-            'userID'=>auth('api')->user()->id,
+            'expires_in'   => auth('jwtusers')->factory()->getTTL() * 60,
+            'user'=>auth('jwtusers')->user(),
+            'userID'=>auth('jwtusers')->user()->id,
             'role'=>'user'
         ]);
     }
