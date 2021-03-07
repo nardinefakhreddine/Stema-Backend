@@ -42,5 +42,10 @@ Route::group(['prefix' => 'admin','middleware' => ['assign.guard:admins','jwt.au
 
 Route::group(['prefix' => 'user','middleware' => ['assign.guard:api','jwt.auth']],function ()
 {
-	Route::get('/getAll','UserController@getAll');	
+        Route::get('/getAll','UserController@getAll');
+        Route::get('getById/{id}','UserController@getById');
+        Route::post('create','UserController@create');
+        Route::get('edit/{id}','UserController@edit');
+        Route::put('update/{id}','UserController@update');
+        Route::delete('delete/{id}','UserController@delete');	
 });

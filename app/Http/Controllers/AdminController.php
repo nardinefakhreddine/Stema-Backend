@@ -88,7 +88,7 @@ class AdminController extends Controller
         ], 200);
     }
     return response()->json([
-        "message" => "Couldn't update link"
+        "message" => "Couldn't update Admin"
     ], 400);
          
   }
@@ -104,11 +104,6 @@ class AdminController extends Controller
 
 
   /**END CRUD**/
-
-
-
-
-
 
 
  protected function respondWithToken($token)
