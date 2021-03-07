@@ -17,7 +17,7 @@ class Admin extends Authenticatable implements JWTSubject
         'name','username','email', 'password',
     ];
     protected $hidden = [
-        'password', 'remember_token',
+         'remember_token'
     ];
     public function getJWTIdentifier()
     {
@@ -32,6 +32,13 @@ class Admin extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function setPasswordAttribute($password)
+    {
+        if (!empty($password)) {
+            $this->attributes['password'] =bcrypt($password);
+        }
     }
 
 

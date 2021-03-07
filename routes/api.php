@@ -17,11 +17,25 @@ use Illuminate\Support\Facades\Route;
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
-Route::post('/login','AdminController@login');
-Route::post('/user/login','UserController@login');
+Route::prefix('admin')->group(function () {
+    Route::post('login','AdminController@login');
+    Route::post('logout', 'AdminController@logout');
+   
+});
+Route::prefix('user')->group(function () {
+    Route::post('login','UserController@login');
+    Route::post('logout', 'UserController@logout');
+   
+});
+
+
 Route::group(['prefix' => 'admin','middleware' => ['assign.guard:admins','jwt.auth']],function ()
-{
-	Route::get('/getAll','AdminController@getAll');	
+{       Route::get('getAll','AdminController@getAll');	
+        Route::get('getById/{id}','AdminController@getById');
+        Route::post('create','AdminController@create');
+        Route::get('edit/{id}','AdminController@edit');
+        Route::put('update/{id}','AdminController@update');
+        Route::delete('delete/{id}','AdminController@delete');
 });
 
 
