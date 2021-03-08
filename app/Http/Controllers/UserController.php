@@ -7,12 +7,13 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
+use App\Http\Requests\Login\UserRequest;
 class UserController extends Controller
 {
    
         
 /**  START Login AND LOGOUT **/
-    public function login(Request $request){
+    public function login(UserRequest $request){
 
         $credentials = request(['username', 'password']);
 

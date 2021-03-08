@@ -48,5 +48,5 @@ Route::group(['prefix' => 'user','middleware' => ['assign.guard:jwtusers']],func
         Route::put('update/{id}','UserController@update');
         Route::delete('delete/{id}','UserController@delete');	
         Route::post('logout', 'UserController@logout');
-         Route::post('logout', 'AdminController@logout');
+        Route::post('logout', 'AdminController@logout');
 });

@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Login\AdminRequest;
 use App\Admin;
 class AdminController extends Controller
 {
     
     
 /**  START Login AND LOGOUT **/
-    public function login(Request $request){
+    public function login(AdminRequest $request){
          $credentials = request(['username', 'password']);
           if (!$token = auth('admins')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
