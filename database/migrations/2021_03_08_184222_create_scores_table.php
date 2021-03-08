@@ -31,12 +31,3 @@ class CreateScoresTable extends Migration
         Schema::dropIfExists('scores');
     }
 }
-/**$table->bigIncrements('id');
-            $table->string('name')->unique();
-            $table->string('barecode')->unique()->nullable();
-            $table->bigInteger("score_id")->unsigned()->index();
-            $table->foreign("score_id")->references("id")->on("scores")->onDelete("set null")->onUpdate('cascade');;
-            $table->string('brand');
-            $table->text('description');
-            $table->string('image');
-            $table->timestamps(); */
