@@ -25,7 +25,7 @@ class createRequest extends FormRequest
     {
         return [
             'name'=>'required|String|min:3',
-            "username"=>'required|String',
+            "username"=>'required|String|min:3',
             "email"=>'required|email',
             "password"=>'required|String|min:6'
         ];
