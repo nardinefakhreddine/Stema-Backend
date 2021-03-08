@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\Login\AdminRequest;
+use App\Http\Requests\Admin\UpdateAdminRequest;
+use App\Http\Requests\Admin\createRequest;
 use App\Admin;
 class AdminController extends Controller
 {
@@ -52,7 +54,7 @@ class AdminController extends Controller
 
 
    /**Start CRUD**/
-  public function create(Request $request){
+  public function create(createRequest $request){
       //request body
    $admin=Admin::create([
        'name'=>$request->name,
@@ -74,7 +76,7 @@ class AdminController extends Controller
         return response()->json($admin);
     }
   }
- public function update(Request $request , $id){
+ public function update(UpdateAdminRequest $request , $id){
      //request Params
     $admin=Admin::find($id)->update([
         'name'=>$request->name,
