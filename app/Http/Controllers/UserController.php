@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
 use App\Http\Requests\Login\UserRequest;
+use App\Http\Requests\User\updateRequest;
+use App\Http\Requests\User\createRequest;
 class UserController extends Controller
 {
    
@@ -58,7 +60,7 @@ class UserController extends Controller
 
 
  /**Start CRUD**/
- public function create(Request $request){
+ public function create(createRequest $request){
     $user=User::create([
      'name'=>$request->name,
      'phone'=>$request->phone,
@@ -79,7 +81,7 @@ public function edit($id){
       return response()->json($user);
   }
 }
-public function update(Request $request , $id){
+public function update(updateRequest $request , $id){
    $user=User::find($id)->update([
       'name'=>$request->name,
      'username'=>$request->username,
