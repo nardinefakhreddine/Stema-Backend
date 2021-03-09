@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('barecode')->unique()->nullable();
-            $table->foreignId('score_id')->constrained('id')->on("scores")->onDelete('cascade')->onUpdate('cascade');
+            $table->String('score_id')->constrained('id')->on("scores")->onDelete('cascade')->onUpdate('cascade');
             $table->string('brand');
             $table->text('description');
             $table->string('image');

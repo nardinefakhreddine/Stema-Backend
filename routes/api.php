@@ -50,3 +50,26 @@ Route::group(['prefix' => 'user','middleware' => ['assign.guard:jwtusers']],func
         Route::post('logout', 'UserController@logout');
         Route::post('logout', 'AdminController@logout');
 });
+
+
+
+/*Products Routes */
+Route::group(['prefix' => 'product','middleware' => ['assign.guard:admins']],function ()
+{       Route::get('getAll','ProductController@getAll');	
+        Route::get('getById/{id}','ProductController@getById');
+
+        /* start search */
+        Route::get('getByBarecode/{barecode}','ProductController@getByBarecode');
+        Route::get('searchByName/{name}','ProductController@searchByName');
+
+        /*end search */
+
+        /**start crud */
+        Route::post('create','ProductController@create');
+        Route::get('edit/{id}','ProductController@edit');
+        Route::put('update/{id}','ProductController@update');
+        Route::delete('delete/{id}','ProductController@delete');
+      /**end crud */
+});
+Route::get('display/{id}','ProductController@display');
+
