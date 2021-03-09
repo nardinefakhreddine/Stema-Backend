@@ -27,8 +27,8 @@ class FavoriteController extends Controller
       
  }
 
- public function delete($id){
-    $data=Favorite::find($id)->delete();
+ public function delete($productID,$userID){
+    $data=Favorite::where('product_id',$productID)->where('user_id',$userID)->delete();
     if(!$data){
       return response()->json(["message"=>"Couldn't Delete Data "],400);
   }else{
