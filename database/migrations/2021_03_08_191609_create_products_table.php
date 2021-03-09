@@ -14,9 +14,10 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('barecode')->unique()->nullable();
-            $table->foreignId('score_id')->constrained('scores')->on("scores")->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('score_id')->constrained('id')->on("scores")->onDelete('cascade')->onUpdate('cascade');
             $table->string('brand');
             $table->text('description');
             $table->string('image');
