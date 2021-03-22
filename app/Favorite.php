@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Favorite extends Model
 {
     protected $table="favorites";
-    protected $fillables=['user_id','product_id'];
+    protected $fillable=['user_id','product_id'];
 }
