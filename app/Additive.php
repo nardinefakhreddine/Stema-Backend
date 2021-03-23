@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Additive extends Model
 {
     protected $table="additives";
-    protected $fillable=['name','description'];
+    protected $fillable=['name','desciption'];
 }

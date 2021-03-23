@@ -9,7 +9,7 @@ class NutriController extends Controller
 {
    /** start display  data */
    public function getAll(){
-    $data=nutriFact::all();
+    $data=nutriFact::paginate(5);
     if ($data) {
         return response()->json($data);
     }
@@ -17,6 +17,7 @@ class NutriController extends Controller
         "message" => "Couldn't get Data list"
     ], 400);
 }
+
 public function getById($id)
     {
         $data=nutriFact::find($id);
@@ -29,7 +30,19 @@ public function getById($id)
 
 
    /** End display  data */
+/**Search by Name */
 
+public function searchByName($name){
+    $data=nutriFact::Where('name', 'like', '%' .$name . '%')->get();
+
+    if ($data) {
+        return response()->json($data);
+    }
+    return response()->json([
+        "message" => "Couldn't get product list"
+    ], 400);
+    
+}
 
 
    /*CRUD */
@@ -57,7 +70,7 @@ public function update(Request $request , $id){
    //request Params
    $data=nutriFact::find($id)->update([
       'name'=>$request->name,
-     'desciption'=>$request->desciption,
+     'desciption'=>$request->description,
      
   ]);
 

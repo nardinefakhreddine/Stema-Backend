@@ -8,7 +8,7 @@ class AdditiveController extends Controller
 {
     /** start display  data */
     public function getAll(){
-        $data=Additive::all();
+        $data=Additive::paginate(5);
         if ($data) {
             return response()->json($data);
         }
@@ -28,6 +28,17 @@ class AdditiveController extends Controller
     
     
        /** End display  data */
+       public function searchByName($name){
+        $data=Additive::Where('name', 'like', '%' .$name . '%')->get();
+    
+        if ($data) {
+            return response()->json($data);
+        }
+        return response()->json([
+            "message" => "Couldn't get product list"
+        ], 400);
+        
+    }
     
     
     

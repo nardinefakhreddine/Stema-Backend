@@ -31,7 +31,7 @@ class AdminController extends Controller
 
 /** Start Dispaly Data **/
     public function getAll(){
-        $users=Admin::all();
+        $users=Admin::get();
         if ($users) {
             return response()->json($users);
         }
@@ -78,13 +78,24 @@ class AdminController extends Controller
   }
  public function update(UpdateAdminRequest $request , $id){
      //request Params
-    $admin=Admin::find($id)->update([
-        'name'=>$request->name,
-       'username'=>$request->username,
-       'email'=>$request->email,
-       'password'=>$request->password,
-    ]);
-  
+     if($request->password==""){
+        $admin=Admin::find($id)->update([
+            'name'=>$request->name,
+           'username'=>$request->username,
+           'email'=>$request->email,
+           
+        ]); 
+
+
+    
+    }else{
+        $admin=Admin::find($id)->update([
+            'name'=>$request->name,
+           'username'=>$request->username,
+           'email'=>$request->email,
+           'password'=>$request->password,
+        ]);
+    }
     if ($admin) {
         return response()->json([
             "message" => "Admin successfully updated"

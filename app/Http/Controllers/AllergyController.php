@@ -8,7 +8,7 @@ class AllergyController extends Controller
 {
    /** start display  data */
    public function getAll(){
-    $data=Allergy::all();
+    $data=Allergy::paginate(5);
     if ($data) {
         return response()->json($data);
     }
@@ -29,6 +29,19 @@ public function getById($id)
 
    /** End display  data */
 
+/**Search by Name */
+
+public function searchByName($name){
+    $data=Allergy::Where('name', 'like', '%' .$name . '%')->get();
+
+    if ($data) {
+        return response()->json($data);
+    }
+    return response()->json([
+        "message" => "Couldn't get product list"
+    ], 400);
+    
+}
 
 
    /*CRUD */

@@ -27,7 +27,7 @@ class UpdateAdminRequest extends FormRequest
             'name'=>'required|String|min:3',
             "username"=>'required|String|min:3|unique:admins,username,' . $this->id,
             "email"=>'required|email|unique:admins,email,' . $this->id,
-            "password"=>'required|String|min:6'
+           
         ];
     }
 }

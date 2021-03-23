@@ -48,7 +48,7 @@ Route::group(['prefix' => 'user','middleware' => ['assign.guard:jwtusers']],func
         Route::put('update/{id}','UserController@update');
         Route::delete('delete/{id}','UserController@delete');	
         Route::post('logout', 'UserController@logout');
-        Route::get('logout', 'AdminController@logout');
+        // Route::get('logout', 'AdminController@logout');
 });
 
 
@@ -57,31 +57,64 @@ Route::group(['prefix' => 'user','middleware' => ['assign.guard:jwtusers']],func
 Route::group(['prefix' => 'product','middleware' => ['assign.guard:admins']],function ()
 {      	
         Route::get('getById/{id}','ProductController@getById');
-      
-        /* start search */
-        // Route::get('getByBarecode/{barecode}','ProductController@getByBarecode');
-        Route::get('searchByName/{name}','ProductController@searchByName');
+        Route::get('getAll','ProductController@getAll');
+        Route::get('getScores','ProductController@getScores'); 
 
+        /* start search */
+        Route::get('searchByName/{name}','ProductController@searchByName');
         /*end search */
 
         /**start crud */
-        // Route::post('create','ProductController@create');
-       
-        // Route::put('update/{id}','ProductController@update');
+        Route::post('create','ProductController@Insert');
+        Route::get('edit/{id}','ProductController@edit');
+        Route::put('update/{id}','ProductController@update');
          Route::delete('delete/{id}','ProductController@delete');
       /**end crud */
 });
 
+//Nutri Routes
+Route::get('nutri/getAll','NutriController@getAll');
+Route::get('nutri/searchByName/{name}','NutriController@searchByName');
 
+
+Route::post('nutri/create','NutriController@create');
+Route::delete('nutri/delete/{id}','NutriController@delete');
+Route::get('nutri/edit/{id}','NutriController@edit');
+Route::put('nutri/update/{id}','NutriController@update');
+
+//end Nutri Routes
+
+//Allergy Routes
+Route::get('allergy/getAll','AllergyController@getAll');
+Route::get('allergy/searchByName/{name}','AllergyController@searchByName');
+Route::delete('allergy/delete/{id}','AllergyController@delete');
+
+Route::post('allergy/create','AllergyController@create');
+Route::delete('allergy/delete/{id}','AllergyController@delete');
+Route::get('allergy/edit/{id}','AllergyController@edit');
+Route::put('allergy/update/{id}','AllergyController@update');
+
+
+//Additive Routes
+Route::get('additive/getAll','AdditiveController@getAll');
+Route::get('additive/searchByName/{name}','AdditiveController@searchByName');
+
+
+Route::post('additive/create','AdditiveController@create');
+Route::delete('additive/delete/{id}','AdditiveController@delete');
+Route::get('additive/edit/{id}','AdditiveController@edit');
+Route::put('additive/update/{id}','AdditiveController@update');
+
+
+
+
+/**Product user  */
 Route::get('display/{id}','ProductController@display');
-Route::get('/getAll','UserController@getAll');
-Route::get('getById/{id}','UserController@getById');
+Route::get('getAll','ProductController@getAll');
 Route::get('/getByBarecode/{barecode}','ProductController@getByBarecode');
 
 Route::get('/displayByBareCode/{barecode}','ProductController@displayByBareCode'); 
-Route::get('product/getAll','ProductController@getAll');
-Route::get('product/getScores','ProductController@getScores');  
-Route::post('product/create','ProductController@Insert');
+
+ 
+
 Route::post('create','NutriController@create'); 
-Route::get('/product/edit/{id}','ProductController@edit');
-Route::put('/product/update/{id}','ProductController@update');
