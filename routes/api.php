@@ -75,42 +75,59 @@ Route::group(['prefix' => 'product','middleware' => ['assign.guard:admins']],fun
 //Nutri Routes
 Route::get('nutri/getAll','NutriController@getAll');
 Route::get('nutri/searchByName/{name}','NutriController@searchByName');
-
+Route::get('nutri/getAllNutri','NutriController@getAllNutri');
 
 Route::post('nutri/create','NutriController@create');
 Route::delete('nutri/delete/{id}','NutriController@delete');
 Route::get('nutri/edit/{id}','NutriController@edit');
 Route::put('nutri/update/{id}','NutriController@update');
 
+ //Nutri_Prod
+Route::post('nutriprod/create','NutriproductController@create');
+Route::get('getNutri/{id}','NutriproductController@getNutri');
+
+
 //end Nutri Routes
 
 //Allergy Routes
 Route::get('allergy/getAll','AllergyController@getAll');
+Route::get('allergy/getAllergies','AllergyController@getAllergies');
 Route::get('allergy/searchByName/{name}','AllergyController@searchByName');
 Route::delete('allergy/delete/{id}','AllergyController@delete');
-
 Route::post('allergy/create','AllergyController@create');
 Route::delete('allergy/delete/{id}','AllergyController@delete');
 Route::get('allergy/edit/{id}','AllergyController@edit');
 Route::put('allergy/update/{id}','AllergyController@update');
+//Allergy_Prod
+Route::post('AllergyProd/create','AllergyproductController@create');
+Route::get('getAllergy/{id}','AllergyproductController@getAllergy');
+
+
 
 
 //Additive Routes
 Route::get('additive/getAll','AdditiveController@getAll');
+Route::get('additive/getAllA','AdditiveController@getAllA');
 Route::get('additive/searchByName/{name}','AdditiveController@searchByName');
-
-
 Route::post('additive/create','AdditiveController@create');
 Route::delete('additive/delete/{id}','AdditiveController@delete');
 Route::get('additive/edit/{id}','AdditiveController@edit');
 Route::put('additive/update/{id}','AdditiveController@update');
 
+//Additive_Prod
+Route::post('AdditiveProd/create','AdditiveproductController@create');
+Route::get('getAdditive/{id}','AdditiveproductController@getAdditive');
 
 
 
 /**Product user  */
 Route::get('display/{id}','ProductController@display');
+
+
+
 Route::get('getAll','ProductController@getAll');
+
+
 Route::get('/getByBarecode/{barecode}','ProductController@getByBarecode');
 
 Route::get('/displayByBareCode/{barecode}','ProductController@displayByBareCode'); 

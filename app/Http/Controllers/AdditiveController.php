@@ -16,6 +16,17 @@ class AdditiveController extends Controller
             "message" => "Couldn't get Data list"
         ], 400);
     }
+
+    public function getAllA(){
+        $data=Additive::get();
+        if ($data) {
+            return response()->json($data);
+        }
+        return response()->json([
+            "message" => "Couldn't get Data list"
+        ], 400);
+    }
+
     public function getById($id)
         {
             $data=Additive::find($id);

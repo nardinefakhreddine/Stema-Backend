@@ -17,6 +17,15 @@ class NutriController extends Controller
         "message" => "Couldn't get Data list"
     ], 400);
 }
+public function getAllNutri(){
+    $data=nutriFact::get();
+    if ($data) {
+        return response()->json($data);
+    }
+    return response()->json([
+        "message" => "Couldn't get Data list"
+    ], 400);
+}
 
 public function getById($id)
     {

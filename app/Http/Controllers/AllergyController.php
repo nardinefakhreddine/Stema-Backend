@@ -16,6 +16,18 @@ class AllergyController extends Controller
         "message" => "Couldn't get Data list"
     ], 400);
 }
+ /** start display  data */
+ public function getAllergies(){
+    $data=Allergy::get();
+    if ($data) {
+        return response()->json($data);
+    }
+    return response()->json([
+        "message" => "Couldn't get Data list"
+    ], 400);
+}
+
+
 public function getById($id)
     {
         $data=Allergy::find($id);
